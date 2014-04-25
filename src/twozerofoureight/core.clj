@@ -31,6 +31,14 @@
      (map #(filter (complement nil?) %))
      (map merge-row))
 
+(let [rows [[1 2 3 4] [5 6 7 8] [9 10 11 12] [13 14 15 16]]]
+	(for [n (range 4)]
+          (map #(nth % n) rows)))
+
+(defn rotate-rows [rows]
+  (for [n (range 4)]
+    (map #(nth % n) rows)))
+
 [[1 2 3 4]
  [2 3 4 5]]
 
@@ -48,3 +56,8 @@
 [[1 6]
  [5 9]]
 
+
+
+(comment "Two parts:
+      Juggle rows: juggling rows
+      Merge rows: e.g turn sequence into new sequence")
