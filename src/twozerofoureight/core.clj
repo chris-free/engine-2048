@@ -26,8 +26,8 @@
 (defn grid->rows [grid]
   (->> grid
        vals
-;       (map #(filter (complement nil?) %))
-       (partition 4)))
+       (partition 4)
+       (map #(filter (complement nil?) %))))
 
 
 (comment
