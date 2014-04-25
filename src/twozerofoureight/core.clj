@@ -11,13 +11,14 @@
                 :d1 :d2 :d3 :d4])
 
 (defn merge-row [row]
+  "This function..."
   (let [p (partition-by identity row)
         a (map #(if (> (count %) 1)
                   (map (fn [coll]  (apply + coll)) (partition 2 2 [] %))
                   %)
                p)
         b (mapcat identity a)]
-    b))
+    (into (take (- 4 (count b)) (repeat nil))  b)))
 
 (defn rotate-rows [rows]
   (for [n (range 4)]
