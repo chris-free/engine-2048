@@ -30,6 +30,11 @@
        (partition 4)
        (map #(filter (complement nil?) %))))
 
+(defn rows->grid [rows]
+  (->> rows
+       (mapcat identity)
+       (zipmap grid-keys)
+       (sort-by first)))
 
 (comment
   (let [rows [[1 2 3 4] [5 6 7 8] [9 10 11 12] [13 14 15 16]]]
@@ -39,6 +44,7 @@
   (->> grid
        grid->rows
        (map merge-row)
+       rows->grid
        )
 
   (->> grid
