@@ -10,11 +10,10 @@
                 :c1 :c2 :c3 :c4
                 :d1 :d2 :d3 :d4])
 
-(defmacro sort-map [m]
-  `(sorted-map ~@(->> m
-                      (map identity)
-                      (sort-by first)
-                      (mapcat identity))))
+(defn sort-map [m]
+  (->> m
+       (mapcat identity)
+       (apply sorted-map)))
 
 (defn merge-row [row]
   "This function..."
