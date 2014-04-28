@@ -10,6 +10,12 @@
                 :c1 :c2 :c3 :c4
                 :d1 :d2 :d3 :d4])
 
+(defmacro sort-map [m]
+  `(sorted-map ~@(->> m
+                      (map identity)
+                      (sort-by first)
+                      (mapcat identity))))
+
 (defn merge-row [row]
   "This function..."
   (let [p (partition-by identity row)
@@ -54,3 +60,6 @@
 (comment "Two parts:
       Juggle rows: juggling rows
       Merge rows: e.g turn sequence into new sequence")
+
+
+
