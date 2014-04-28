@@ -34,6 +34,7 @@
        sort-map
        vals
        (partition 4)
+       ; do this bit elsewehre before merging?
        (map #(filter (complement nil?) %))))
 
 (defn rows->grid [rows]
