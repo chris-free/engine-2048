@@ -65,3 +65,48 @@
 
 
 
+(defmulti move (fn [direction _]
+                 direction))
+
+(defmethod move :right [_ grid]
+  (->> grid
+       grid->rows
+       (map merge-row)
+       rows->grid))
+
+(defmethod move :left [_ grid]
+  (->> grid
+       grid->rows
+       (map reverse)
+       (map merge-row)
+       (map reverse)
+       rows->grid))
+
+(defmethod move :down [_ grid]
+  (->> grid
+       grid->rows
+       rotate-rows
+       (map merge-row)
+       rotate-rows
+       rows->grid))
+
+(move :right {}
+      )
+
+
+(->> grid
+     grid->rows
+     (map reverse)
+     (map merge-row)
+     (map reverse)
+     rows->grid
+     )
+
+(->> grid
+       grid->rows
+;       rotate-rows
+;       (map merge-row)
+ ;      rotate-rows
+  ;     rows->grid
+       )
+
