@@ -17,6 +17,7 @@
 
 (defn merge-row [row]
   "This function..."
+  "Problems: [4 16 16 16] => [nil 4 32 16] WRONG"
   (let [asd (filter (complement nil?) row)
         p (partition-by identity asd)
         a (map #(if (> (count %) 1)
