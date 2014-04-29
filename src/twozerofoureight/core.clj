@@ -89,23 +89,26 @@
        rotate-rows
        rows->grid))
 
-(move :right {}
-      )
+(comment
+  (move :right {}
+        )
 
 
-(->> grid
-     grid->rows
-     (map reverse)
-     (map merge-row)
-     (map reverse)
-     rows->grid
-     )
-
-(->> grid
+  (->> grid
        grid->rows
-;       rotate-rows
-;       (map merge-row)
- ;      rotate-rows
-  ;     rows->grid
+       (map reverse)
+       (map merge-row)
+       (map reverse)
+       rows->grid
        )
 
+  (->> grid
+       grid->rows
+       rotate-rows
+       (map merge-row)
+       rotate-rows
+       rows->grid
+       )
+  (sort-map grid)
+  (merge-row [nil 1 4 4])
+  (map #(filter (complement nil?) %) (list 1 2 2 4)))
