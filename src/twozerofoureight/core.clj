@@ -125,4 +125,22 @@
          :d1 4,
          :d2 16,
          :d3 16,
-         :d4 16}))
+         :d4 16})
+  "Check for over?"
+  (zipmap grid-keys [nil nil nil nil  nil nil nil nil  nil nil nil nil   nil nil nil nil])
+  (meta (grid-move :left {:a3 nil,
+                          :c1 nil,
+                          :c2 nil,
+                          :b3 nil,
+                          :b2 nil,
+                          :b4 nil,
+                          :b1 nil,
+                          :c4 nil,
+                          :c3 nil,
+                          :d4 nil,
+                          :d1 nil,
+                          :d2 nil,
+                          :d3 nil,
+                          :a2 nil,
+                          :a1 nil,
+                          :a4 2})))
