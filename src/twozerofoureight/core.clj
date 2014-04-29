@@ -18,14 +18,15 @@
 (defn merge-row [row]
   "This function..."
   "Problems: [4 16 16 16] => [nil 4 32 16] WRONG"
-  (let [asd (filter (complement nil?) row)
-        p (partition-by identity asd)
-        a (map #(if (> (count %) 1)
-                  (map (fn [coll]  (apply + coll)) (partition 2 2 [] %))
-                  %)
-               p)
-        b (mapcat identity a)]
+  (let [b (->> row
+               (filter (complement nil?))
+               (partition-by identity)
+               (map #(if (> (count %) 1)
+                       (map (fn [coll]  (apply + coll)) (partition 2 2 [] %))
+                       %))
+               (mapcat identity))]
     (into  (vec (take (- 4 (count b)) (repeat nil))) (vec b))))
+
 
 (defn rotate-rows [rows]
   (for [n (range 4)]
