@@ -93,7 +93,7 @@
         up-grid (move :up grid)
         down-grid (move :down grid)]
     (with-meta
-      (move direction grid)
+      (generate-tile (move direction grid))
       {:over? (= left-grid
                  right-grid
                  up-grid
