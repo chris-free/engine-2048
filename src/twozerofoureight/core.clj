@@ -17,7 +17,8 @@
 
 (defn merge-row [row]
   "This function..."
-  (let [p (partition-by identity row)
+  (let [asd (filter (complement nil?) row)
+        p (partition-by identity asd)
         a (map #(if (> (count %) 1)
                   (map (fn [coll]  (apply + coll)) (partition 2 2 [] %))
                   %)
@@ -33,9 +34,7 @@
   (->> grid
        sort-map
        vals
-       (partition 4)
-       ; do this bit elsewehre before merging?
-       (map #(filter (complement nil?) %))))
+       (partition 4)))
 
 (defn rows->grid [rows]
   (->> rows
