@@ -89,6 +89,16 @@
        rotate-rows
        rows->grid))
 
+(defmethod move :up [_ grid]
+  (->> grid
+       grid->rows
+       rotate-rows
+       (map reverse)
+       (map merge-row)
+       (map reverse)
+       rotate-rows
+       rows->grid))
+
 (comment
   (move :right {}
         )
