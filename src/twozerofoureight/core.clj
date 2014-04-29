@@ -86,25 +86,6 @@
        rotate-rows
        rows->grid))
 
-(comment
-  (move :left 
-        {:a1 nil,
-         :a2 nil,
-         :a3 nil,
-         :a4 nil,
-         :b1 nil,
-         :b2 nil,
-         :b3 nil,
-         :b4 nil,
-         :c1 2,
-         :c2 4,
-         :c3 nil,
-         :c4 nil,
-         :d1 4,
-         :d2 16,
-         :d3 16,
-         :d4 16}))
-
 (defn grid-move [direction grid]
   (let [next-grid (move direction grid)
         left-grid (move :left  grid)
@@ -127,3 +108,21 @@
                     next-grid)})))
 
 
+(comment
+  (move :left 
+        {:a1 nil,
+         :a2 nil,
+         :a3 nil,
+         :a4 nil,
+         :b1 nil,
+         :b2 nil,
+         :b3 nil,
+         :b4 nil,
+         :c1 2,
+         :c2 4,
+         :c3 nil,
+         :c4 nil,
+         :d1 4,
+         :d2 16,
+         :d3 16,
+         :d4 16}))
