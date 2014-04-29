@@ -104,22 +104,29 @@
   (move :right {}
         )
 
+  (->> {:a1 nil,
+      :a2 nil,
+      :a3 nil,
+      :a4 nil,
+      :b1 nil,
+      :b2 nil,
+      :b3 nil,
+      :b4 nil,
+      :c1 2,
+      :c2 4,
+      :c3 nil,
+      :c4 nil,
+      :d1 4,
+      :d2 16,
+      :d3 16,
+      :d4 16}
+     grid->rows
+     rotate-rows
+     (map reverse)
+     (map merge-row)
+     (map reverse)
+     rotate-rows
+     rows->grid))
 
-  (->> grid
-       grid->rows
-       (map reverse)
-       (map merge-row)
-       (map reverse)
-       rows->grid
-       )
 
-  (->> grid
-       grid->rows
-       rotate-rows
-       (map merge-row)
-       rotate-rows
-       rows->grid
-       )
-  (sort-map grid)
-  (merge-row [nil 1 4 4])
-  (map #(filter (complement nil?) %) (list 1 2 2 4)))
+
