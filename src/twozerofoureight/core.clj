@@ -17,6 +17,7 @@
 
 (defn merge-row [row]
   "This function..."
+  "Still could be better..."
   (let [b (->> row
                (filter (complement nil?))
                (partition-by identity)
@@ -31,7 +32,8 @@
                    (filter (comp nil? second))
                    keys
                    rand-nth)
-         2))
+         (-> [2 2 2 4]
+             rand-nth)))
 
 (defn rotate-rows [rows]
   (for [n (range 4)]
