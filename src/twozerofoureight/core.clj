@@ -104,3 +104,26 @@
          :d2 16,
          :d3 16,
          :d4 16}))
+
+(defn grid-move [direction grid]
+  (let [next-grid (move direction grid)
+        left-grid (move :left  grid)
+        right-grid (move :right grid)
+        up-grid (move :up grid)
+        down-grid (move :down grid)]
+    (with-meta
+      (move direction grid)
+      {:over? (= left-grid
+                 right-grid
+                 up-grid
+                 down-grid)
+       :left? (not= left-grid
+                    next-grid)
+       :right? (not= right-grid
+                     next-grid)
+       :up? (not= up-grid
+                  next-grid)
+       :down? (not= down-grid
+                    next-grid)})))
+
+
