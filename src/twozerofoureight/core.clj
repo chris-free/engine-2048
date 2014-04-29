@@ -43,28 +43,6 @@
        (zipmap grid-keys)
        sort-map))
 
-(comment
-  (let [rows [[1 2 3 4] [5 6 7 8] [9 10 11 12] [13 14 15 16]]]
-	(for [n (range 4)]
-          (map #(nth % n) rows)))
-  
-  (->> grid
-       grid->rows
-       (map merge-row)
-       rows->grid)
-
-  (->> grid
-       vals
-       (map #(filter (complement nil?) %))
-       (partition 4)))
-
-
-(comment "Two parts:
-      Juggle rows: juggling rows
-      Merge rows: e.g turn sequence into new sequence")
-
-
-
 (defmulti move (fn [direction _]
                  direction))
 
