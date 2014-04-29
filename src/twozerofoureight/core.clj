@@ -26,6 +26,12 @@
                (mapcat identity))]
     (into  (vec (take (- 4 (count b)) (repeat nil))) (vec b))))
 
+(defn generate-tile [grid]
+  (assoc grid (->> grid
+                   (filter (comp nil? second))
+                   keys
+                   rand-nth)
+         2))
 
 (defn rotate-rows [rows]
   (for [n (range 4)]
