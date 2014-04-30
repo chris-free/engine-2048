@@ -1,16 +1,16 @@
 (ns twozerofoureight.core)
 
-(def grid-keys [:a1 :a2 :a3 :a4
+(def ^:private  grid-keys [:a1 :a2 :a3 :a4
                 :b1 :b2 :b3 :b4
                 :c1 :c2 :c3 :c4
                 :d1 :d2 :d3 :d4])
 
-(defn sort-map [m]
+(defn ^:private sort-map [m]
   (->> m
        (mapcat identity)
        (apply sorted-map)))
 
-(defn merge-row [row]
+(defn ^:private merge-row [row]
   "This function..."
   "Still could be better..."
   (let [b (->> row
@@ -22,7 +22,7 @@
                (mapcat identity))]
     (into  (vec (take (- 4 (count b)) (repeat nil))) (vec b))))
 
-(defn generate-tile [grid]
+(defn ^:private generate-tile [grid]
   (assoc grid (->> grid
                    (filter (comp nil? second))
                    keys
@@ -30,32 +30,32 @@
          (-> [2 2 2 4]
              rand-nth)))
 
-(defn rotate-rows [rows]
+(defn ^:private rotate-rows [rows]
   (for [n (range 4)]
     (map #(nth % n) rows)))
 
-(defn grid->rows [grid]
+(defn ^:private grid->rows [grid]
   (->> grid
        sort-map
        vals
        (partition 4)))
 
-(defn rows->grid [rows]
+(defn ^:private rows->grid [rows]
   (->> rows
        (mapcat identity)
        (zipmap grid-keys)
        sort-map))
 
-(defmulti move (fn [direction _]
+(defmulti ^:private move (fn [direction _]
                  direction))
 
-(defmethod move :right [_ grid]
+(defmethod ^:private move :right [_ grid]
   (->> grid
        grid->rows
        (map merge-row)
        rows->grid))
 
-(defmethod move :left [_ grid]
+(defmethod ^:private move :left [_ grid]
   (->> grid
        grid->rows
        (map reverse)
@@ -63,7 +63,7 @@
        (map reverse)
        rows->grid))
 
-(defmethod move :down [_ grid]
+(defmethod ^:private move :down [_ grid]
   (->> grid
        grid->rows
        rotate-rows
@@ -71,7 +71,7 @@
        rotate-rows
        rows->grid))
 
-(defmethod move :up [_ grid]
+(defmethod ^:private move :up [_ grid]
   (->> grid
        grid->rows
        rotate-rows
@@ -81,7 +81,7 @@
        rotate-rows
        rows->grid))
 
-(defn grid-move [direction grid]
+(defn  grid-move [direction grid]
   (let [next-grid (generate-tile (move direction grid))
         left-grid (move :left  next-grid)
         right-grid (move :right  next-grid)
