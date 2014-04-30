@@ -1,4 +1,4 @@
-(ns twozerofoureight.core)
+(ns engine-2048.core)
 
 (def ^:private  grid-keys [:a1 :a2 :a3 :a4
                 :b1 :b2 :b3 :b4

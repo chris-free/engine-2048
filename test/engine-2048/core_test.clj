@@ -1,6 +1,6 @@
-(ns twozerofoureight.core-test
+(ns engine-2048.core-test
   (:require [clojure.test :refer :all]
-            [twozerofoureight.core :refer :all]))
+            [engine-2048.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
