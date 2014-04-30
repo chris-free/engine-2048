@@ -1,10 +1,5 @@
 (ns twozerofoureight.core)
 
-(def grid {:a1 nil :a2 2 :a3 nil :a4 4
-           :b1 nil :b2 2 :b3 8 :b4 4
-           :c1 2 :c2 8 :c3 4 :c4 nil
-           :d1 4 :d2 8 :d3 nil :d4 nil})
-
 (def grid-keys [:a1 :a2 :a3 :a4
                 :b1 :b2 :b3 :b4
                 :c1 :c2 :c3 :c4
@@ -87,7 +82,6 @@
        rows->grid))
 
 (defn grid-move [direction grid]
-  
   (let [next-grid (generate-tile (move direction grid))
         left-grid (move :left  next-grid)
         right-grid (move :right  next-grid)
@@ -110,25 +104,10 @@
 
 
 (comment
-  (move :left 
-        {:a1 nil,
-         :a2 nil,
-         :a3 nil,
-         :a4 nil,
-         :b1 nil,
-         :b2 nil,
-         :b3 nil,
-         :b4 nil,
-         :c1 2,
-         :c2 4,
-         :c3 nil,
-         :c4 nil,
-         :d1 4,
-         :d2 16,
-         :d3 16,
-         :d4 16})
-  "Check for over?"
-  (zipmap grid-keys [nil nil nil nil  nil nil nil nil  nil nil nil nil   nil nil nil nil])
+  (def grid {:a1 nil :a2 2 :a3 nil :a4 4
+           :b1 nil :b2 2 :b3 8 :b4 4
+           :c1 2 :c2 8 :c3 4 :c4 nil
+           :d1 4 :d2 8 :d3 nil :d4 nil})
   (not= {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}
         (move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}))
   (meta (grid-move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 2, :d3 nil, :d4 nil})))
