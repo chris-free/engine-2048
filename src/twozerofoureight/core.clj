@@ -103,10 +103,7 @@
                     next-grid)})))
 
 (defn generate-grid []
-  (with-meta (->> nil
-                  repeat
-                  (take 16)
-                  (zipmap grid-keys)
+  (with-meta (->> (zipmap grid-keys (take 16 (repeat nil)))
                   generate-tile
                   sort-map)
     {:over? false
@@ -124,3 +121,6 @@
   (not= {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}
         (move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}))
   (meta (grid-move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 2, :d3 nil, :d4 nil})))
+
+
+
