@@ -87,13 +87,14 @@
        rows->grid))
 
 (defn grid-move [direction grid]
-  (let [next-grid (move direction grid)
+  
+  (let [next-grid (move direction grid) ; generate-tile
         left-grid (move :left  grid)
         right-grid (move :right grid)
         up-grid (move :up grid)
         down-grid (move :down grid)]
     (with-meta
-      (generate-tile (move direction grid))
+      next-grid
       {:over? (= left-grid
                  right-grid
                  up-grid
