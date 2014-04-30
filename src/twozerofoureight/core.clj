@@ -129,19 +129,6 @@
          :d4 16})
   "Check for over?"
   (zipmap grid-keys [nil nil nil nil  nil nil nil nil  nil nil nil nil   nil nil nil nil])
-  (meta (grid-move :left {:a3 nil,
-                          :c1 nil,
-                          :c2 nil,
-                          :b3 nil,
-                          :b2 nil,
-                          :b4 nil,
-                          :b1 nil,
-                          :c4 nil,
-                          :c3 nil,
-                          :d4 nil,
-                          :d1 nil,
-                          :d2 nil,
-                          :d3 nil,
-                          :a2 nil,
-                          :a1 nil,
-                          :a4 2})))
+  (not= {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}
+        (move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 nil, :d3 nil, :d4 2}))
+  (meta (grid-move :down {:a1 nil, :a2 nil, :a3 nil, :a4 nil, :b1 nil, :b2 nil, :b3 nil, :b4 nil, :c1 nil, :c2 nil, :c3 nil, :c4 nil, :d1 nil, :d2 2, :d3 nil, :d4 nil})))
