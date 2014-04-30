@@ -4,6 +4,8 @@ This is a simple library which gives 2048 backend functionality. e.g the generat
 
 ## Usage
 
+#### The data structure
+
 The grid datastructure is keyed by the rows by letter and name and empty slots are set as nil. e.g
 
 {:a1 nil :a2 2 :a3 nil :a4 4
@@ -16,7 +18,7 @@ The grid has a map as metadata containing boolean values for keys:
 - :over? - True whether the game is over (unable to move in any direction)
 - :left?/:right?/:up?/:down? - True when it is possible to move in the said direction
 
-######There are two public functions:
+#### Functions:
 
 (generate-grid) - returns a grid as the data structure described above
 
