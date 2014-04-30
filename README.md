@@ -13,10 +13,10 @@ The grid datastructure is keyed by the rows by letter and name and empty slots a
 
 The grid has a map as metadata containing boolean values for keys:
 
-:over? - True whether the game is over (unable to move in any direction)
-:left?/:right?/:up?/:down? - True when it is possible to move in the said direction
+- :over? - True whether the game is over (unable to move in any direction)
+- :left?/:right?/:up?/:down? - True when it is possible to move in the said direction
 
-There are two public functions:
+######There are two public functions:
 
 (generate-grid) - returns a grid as the data structure described above
 
