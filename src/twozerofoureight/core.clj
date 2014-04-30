@@ -81,7 +81,7 @@
        rotate-rows
        rows->grid))
 
-(defn  grid-move [direction grid]
+(defn grid-move [direction grid]
   (let [next-grid (generate-tile (move direction grid))
         left-grid (move :left  next-grid)
         right-grid (move :right  next-grid)
@@ -101,6 +101,19 @@
                   next-grid)
        :down? (not= down-grid
                     next-grid)})))
+
+(defn generate-grid []
+  (with-meta (->> nil
+                  repeat
+                  (take 16)
+                  (zipmap grid-keys)
+                  generate-tile
+                  sort-map)
+    {:over? false
+     :left? true
+     :right? true
+     :up? true
+     :down? true}))
 
 
 (comment
