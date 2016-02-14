@@ -1,4 +1,9 @@
-(ns engine-2048.core)
+(ns engine-2048.core
+  (:gen-class
+   :name com.chrisfree.engine2048
+   :methods [#^{:static true} [gridMove [String java.util.HashMap] java.util.HashMap]
+             #^{:static true} [gridMeta [java.util.HashMap] java.util.HashMap]
+             #^{:static true} [generateGrid [] java.util.HashMap]]))
 
 (def ^:private  grid-keys [:a1 :a2 :a3 :a4
                 :b1 :b2 :b3 :b4
@@ -81,26 +86,29 @@
        rotate-rows
        rows->grid))
 
+(defn grid-meta [grid]
+  (let [left-grid (move :left  grid)
+        right-grid (move :right  grid)
+        up-grid (move :up grid)
+        down-grid (move :down grid)]
+    {:over? (= left-grid
+               right-grid
+               up-grid
+               down-grid)
+     :left? (not= left-grid
+                  grid)
+     :right? (not= right-grid
+                   grid)
+     :up? (not= up-grid
+                grid)
+     :down? (not= down-grid
+                  grid)}))
+
 (defn grid-move [direction grid]
-  (let [next-grid (generate-tile (move direction grid))
-        left-grid (move :left  next-grid)
-        right-grid (move :right  next-grid)
-        up-grid (move :up next-grid)
-        down-grid (move :down next-grid)]
+  (let [next-grid (generate-tile (move direction grid))]
     (with-meta
       next-grid
-      {:over? (= left-grid
-                 right-grid
-                 up-grid
-                 down-grid)
-       :left? (not= left-grid
-                    next-grid)
-       :right? (not= right-grid
-                     next-grid)
-       :up? (not= up-grid
-                  next-grid)
-       :down? (not= down-grid
-                    next-grid)})))
+      (grid-meta next-grid))))
 
 (defn generate-grid []
   (with-meta (->> (zipmap grid-keys (take 16 (repeat nil)))
@@ -111,6 +119,18 @@
      :right? true
      :up? true
      :down? true}))
+
+(defn -gridMove [direction grid]
+  (java.util.HashMap. (grid-move (keyword direction)
+                                (into {} grid))))
+;; Convert keywords to strings then Convert grid to hashmap (java.util.HashMap. {"a" 1 "b" 2})
+
+
+(defn -generateGrid []
+  (java.util.HashMap. (generate-grid)))
+
+(defn -gridMeta [grid]
+  (java.util.HashMap. (grid-meta (into {} grid))))
 
 
 (comment
